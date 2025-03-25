@@ -1,0 +1,112 @@
+.container {
+  color: #333;
+  min-height: 100vh;
+}
+
+.title {
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+.uploadButton {
+  background-color: #333;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  display: inline-block;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.uploadButton:hover {
+  opacity: 1.5;
+}
+
+.hiddenInput {
+  display: none;
+}
+
+.profileCard {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  margin: auto;
+  text-align: center;
+}
+.imageContainer {
+  position: relative;
+  margin-bottom: 15px;
+}
+.profileImage {
+  border-radius: 50%;
+  border: 2px solid #ccc;
+}
+
+.imageContainer input {
+  margin-top: 10px;
+}
+
+.profileField {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.profileField label {
+  font-weight: bold;
+}
+
+.profileField input {
+  border: 1px solid #ccc;
+  width: 50%;
+  height: 30px;
+  padding: 0 16px;
+  border-radius: 5px;
+  outline: none;
+  font-weight: 400;
+  color: #63a161;
+  font-size: 0.875rem;
+}
+
+.buttonGroup {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.editButton,
+.saveButton {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.editButton {
+  background: #28a745;
+  color: white;
+  transition: transform 0.3s ease-in-out;
+}
+
+.editButton:hover {
+  transform: scale(1.05);
+}
+
+.saveButton {
+  background: #28a745;
+  color: white;
+  transition: transform 0.3s ease-in-out;
+}
+
+.saveButton:hover {
+  transform: scale(1.05);
+}
+.successMessage {
+  font-weight: 600;
+  color: #28a745;
+}

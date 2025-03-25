@@ -1,0 +1,79 @@
+.sidebar {
+  width: 280px;
+  background-color: #fff;
+  color: #333;
+  padding: 20px 20px 20px 0;
+  height: 100vh;
+  border-right: 1px solid #ddd;
+  position: relative;
+}
+/* sidebar.module.css */
+.spinnerContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%; /* Or a suitable height for the sidebar content area */
+}
+.menu {
+  list-style: none;
+  padding: 0;
+}
+
+.menuItem {
+  margin-bottom: 20px;
+}
+
+.menuItem span {
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 5px;
+}
+.lastItem .logout {
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  padding: 10px;
+  border-radius: 5px;
+  color: red;
+}
+.lastItem .logout:hover {
+  background-color: red;
+  color: #fff;
+}
+.menuItem span:hover {
+  background-color: #50aa4e;
+  color: #fff;
+}
+
+.menuIcon {
+  margin-right: 10px;
+}
+.chevron {
+  margin-left: 10px;
+}
+.subMenu {
+  list-style: none;
+  padding: 0;
+  margin-top: 10px;
+  padding-left: 50px;
+}
+
+.subMenu li {
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+.subMenu li a {
+  color: #333;
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+.subMenu li a:hover {
+  color: #50aa4e;
+}

@@ -1,0 +1,254 @@
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Dark overlay */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+.title {
+  text-align: center;
+  margin-bottom: 7px;
+}
+.modalContent {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 70%;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+.modalContent h1 {
+  font-weight: 600;
+}
+.close {
+  color: #333;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: flex-end;
+}
+.close:hover {
+  color: #ff4d4d;
+}
+
+.formgrp {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  margin-bottom: 15px;
+  gap: 10px;
+}
+.formgrp div {
+  display: flex;
+  flex-direction: column;
+}
+.formgrp label {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.input:focus,
+.select:focus {
+  border: 1px solid #63a161;
+}
+.input,
+.select {
+  padding: 4px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  font-size: 16px;
+  outline: none;
+}
+
+.select {
+  appearance: none; /* Remove default arrow in some browsers */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3E%3Cpath fill='%23333' d='M2 0L0 2h4zm0 5L0 3h4z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 12px;
+}
+
+.submit {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.button {
+  background-color: #50aa4e;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+  width: 100%;
+}
+
+.button:hover {
+  opacity: 0.6;
+}
+.top {
+  color: #ff4d4d;
+  opacity: 0.8;
+}
+
+.confirm {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 20px;
+  text-align: center;
+}
+
+.confirm p {
+  font-size: 30px;
+  display: flex;
+  flex-direction: column;
+}
+.confirm p span {
+  font-size: 18px;
+  margin-bottom: 30px;
+}
+.confirmBtn button {
+  background-color: #50aa4e;
+  border-radius: 5px;
+  border: none;
+  color: rgba(255, 255, 255, 1);
+  font-weight: 700;
+  padding: 10px 16px 10px 16px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: transform 0.3s;
+}
+.confirmBtn {
+  display: flex;
+  gap: 10px;
+}
+
+.confirmBtn button:hover {
+  transform: scale(1.05);
+}
+.successMessage {
+  background-color: #dff0d8;
+  color: #3c763d;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.error {
+  font-weight: 400;
+  font-size: 0.85rem;
+  color: #ff4d4d;
+}
+/* In Modal.module.css */
+.privilegesList {
+  margin-top: 10px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 4px;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.privilegeItem {
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.privilegeItem input[type="checkbox"] {
+  margin-right: 8px;
+}
+
+.privilegesContainer {
+  margin-top: 10px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.selectAll {
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.selectAll input[type="checkbox"] {
+  margin-right: 8px;
+}
+
+/* Modal.module.css */
+
+/* Style for the container of each checkbox and label */
+.formgrp > div:has(input[type="checkbox"].checkbox) {
+  display: flex;
+  align-items: center; /* Vertically align label and checkbox */
+  gap: 10px; /* Space between label and checkbox */
+  margin-bottom: 10px; /* Space between checkbox groups */
+}
+
+/* Style for the label associated with the checkbox */
+.formgrp label[for="is_active"],
+.formgrp label[for="is_visible"] {
+  margin-right: 0; /* Remove default right margin */
+  font-weight: normal;
+}
+
+/* Basic style for the checkbox input */
+.formgrp input[type="checkbox"].checkbox {
+  width: 18px;
+  height: 18px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+}
+
+/* Style for the checked state (using dark green) */
+.formgrp input[type="checkbox"].checkbox:checked {
+  background-color: darkgreen;
+  border-color: darkgreen;
+}
+
+/* Custom checkmark (adjust color if needed for contrast) */
+.formgrp input[type="checkbox"].checkbox:checked::before {
+  content: "";
+  display: block;
+  width: 6px;
+  height: 10px;
+  border: solid white; /* Keep checkmark white for contrast */
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+/* Focus state (optional, can also use dark green) */
+.formgrp input[type="checkbox"].checkbox:focus {
+  outline: none;
+  border-color: green; /* A slightly lighter green for focus */
+  box-shadow: 0 0 0 0.2rem rgba(0, 128, 0, 0.25); /* Optional focus ring in green */
+}
+
+/* Ensure label and checkbox are inline */
+.formgrp > div label,
+.formgrp > div input[type="checkbox"].checkbox {
+  vertical-align: middle;
+}

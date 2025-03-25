@@ -1,0 +1,21 @@
+.layout {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+.main {
+  display: flex;
+  flex: 1;
+  padding-top: 80px;
+}
+.sidebar {
+  width: 280px;
+  background-color: #fff;
+  color: #333;
+  height: 100%;
+}
+.content {
+  flex: 1;
+  padding: 20px;
+  background-color: #fff;
+}

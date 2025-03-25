@@ -1,0 +1,113 @@
+.top {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  margin-bottom: 30px;
+}
+.top h1 {
+  color: #333;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.top p {
+  font-weight: 400;
+  color: #799b78;
+}
+.top button {
+  background-color: #50aa4e;
+  padding: 10px 20px;
+  border-radius: 15px;
+  color: #ffffff;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.3ms ease-in-out;
+  font-weight: 700;
+  font-size: 14px;
+  box-shadow: 2px 1px 5px #888888;
+}
+.top button:hover {
+  opacity: 0.6;
+}
+.searchinput {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+  }
+
+
+
+.clientTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .clientTable th,
+  .clientTable td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .clientTable th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+  }
+  
+  .clientTable tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .clientTable tbody tr:hover {
+    background-color: #e2ffdf; /* Light blue on hover */
+  }
+  
+  .actionIcon {
+    margin-right: 10px;
+    cursor: pointer;
+    font-size: 1.2em; /* Adjust icon size */
+    color: #333; /* Default icon color */
+  }
+  
+  
+  
+  /* Specific icon colors */
+  .actionIcon:nth-child(1) { /* View icon */
+    color: #333; /* Blue */
+  }
+  
+  .actionIcon:nth-child(2) { /* Edit icon */
+    color: #333; /* Orange */
+  }
+  
+  .actionIcon:nth-child(3) { /* Delete icon */
+    color: #d32f2f; /* Red */
+  }
+
+  .pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .pageButton,
+  .activePage {
+    padding: 8px 12px;
+    margin: 0 5px;
+    border: 1px solid #ddd;
+    background-color: white;
+    cursor: pointer;
+  }
+  
+  .activePage {
+    background-color: #50aa4e;
+    color: white;
+    border-color: #50aa4e;
+  }
+  
+  .pageButton:hover {
+    background-color: #f0f0f0;
+  }

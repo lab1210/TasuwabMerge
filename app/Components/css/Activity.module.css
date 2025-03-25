@@ -1,0 +1,37 @@
+/* ActivityLog.module.css */
+
+.activityItem {
+  display: flex;
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+  align-items: center;
+  gap: 15px;
+}
+
+.icon {
+  margin-right: 10px;
+}
+
+.activityIcon {
+  font-size: 1.5em; /* Adjust icon size as needed */
+  color: #50aa4e; /* Adjust icon color */
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%; /* Take up remaining space */
+}
+
+.message {
+  font-weight: 600;
+}
+
+.time {
+  font-size: 0.8em;
+  color: #888;
+}
+
+.content {
+  flex: 1; /* Allow content to grow and fill available space */
+}

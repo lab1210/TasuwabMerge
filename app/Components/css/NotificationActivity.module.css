@@ -1,0 +1,64 @@
+/* Notifications.module.css */
+.container {
+  padding: 20px;
+}
+
+.notificationCard {
+  border: 1px solid #ddd;
+  padding: 15px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: flex-start;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.notificationCard.read {
+  background-color: #f9f9f9;
+}
+
+.notificationIcon {
+  margin-right: 15px;
+  font-size: 1.5em;
+  color: #007bff; /* Adjust icon color */
+}
+
+.notificationContent {
+  flex-grow: 1;
+}
+
+.notificationHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.notificationTitle {
+  font-weight: bold;
+}
+
+.notificationTime {
+  font-size: 0.8em;
+  color: #888;
+}
+
+.notificationText {
+  margin: 0;
+  font-size: 0.9em;
+  color: #333;
+}
+
+.markReadButton {
+  background-color: #50aa4e;
+  color: #ffffff;
+  border: none;
+  padding: 8px 15px;
+  cursor: pointer;
+  align-self: flex-start;
+  margin-left: 10px;
+}
+.Icon {
+  font-size: 1.5em; /* Adjust icon size */
+  color: #50aa4e; /* Adjust icon color */
+}

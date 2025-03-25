@@ -1,0 +1,29 @@
+:root {
+  --background: #ffffff;
+  --foreground: #333;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  padding: 10px 10px 10px 10px;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: "Nunito Sans", serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+@media (max-width: 767px) {
+  body {
+    display: none;
+  }
+}

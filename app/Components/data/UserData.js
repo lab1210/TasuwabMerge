@@ -1,0 +1,110 @@
+const staffData = [
+  {
+    id: 1,
+    name: "John Doe",
+    branch: "New York",
+    email: "john@example.com",
+    phone: "123-456-7890",
+    password: "password",
+    role: "Admin",
+    image: "/image.png",
+  },
+  {
+    id: 2,
+    name: "Jane Smith",
+    branch: "Los Angeles",
+    email: "jane@example.com",
+    phone: "987-654-3210",
+    password: "password",
+
+    role: "Staff",
+    image: "/image.png",
+  },
+  {
+    id: 3,
+    name: "Alice Johnson",
+    branch: "Chicago",
+    email: "alice@example.com",
+    phone: "555-123-4567",
+    password: "password",
+
+    role: "Staff",
+    image: "/image.png",
+  },
+  {
+    id: 4,
+    name: "Bob Brown",
+    branch: "Houston",
+    email: "bob@example.com",
+    phone: "444-987-6543",
+    password: "password",
+
+    role: "Admin",
+    image: "/image.png",
+  },
+  {
+    id: 5,
+    name: "Charlie Davis",
+    branch: "Phoenix",
+    email: "charlie@example.com",
+    phone: "333-456-7890",
+    password: "password",
+
+    role: "Staff",
+    image: "/image.png",
+  },
+  {
+    id: 6,
+    name: "Diana Evans",
+    branch: "Philadelphia",
+    email: "diana@example.com",
+    phone: "222-654-3210",
+    role: "Admin",
+    image: "/image.png",
+  },
+  {
+    id: 7,
+    name: "Eve Foster",
+    branch: "San Antonio",
+    email: "eve@example.com",
+    phone: "111-123-4567",
+    password: "password",
+
+    role: "Staff",
+    image: "/image.png",
+  },
+  {
+    id: 8,
+    name: "Frank Green",
+    branch: "San Diego",
+    email: "frank@example.com",
+    phone: "999-987-6543",
+    password: "password",
+
+    role: "Admin",
+    image: "/image.png",
+  },
+  {
+    id: 9,
+    name: "Grace Harris",
+    branch: "Dallas",
+    email: "grace@example.com",
+    phone: "888-456-7890",
+    password: "password",
+
+    role: "Staff",
+    image: "/image.png",
+  },
+  {
+    id: 10,
+    name: "Hank Irving",
+    branch: "San Jose",
+    email: "hank@example.com",
+    phone: "777-654-3210",
+    password: "password",
+
+    role: "Admin",
+    image: "/image.png",
+  },
+];
+export default staffData;

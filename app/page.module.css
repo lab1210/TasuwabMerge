@@ -1,0 +1,101 @@
+.loginContainer {
+  background-color: rgba(255, 255, 255, 1);
+  display: flex;
+  flex-grow: 1;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+}
+
+.logo img {
+  width: 100%;
+  object-fit: contain;
+}
+.logo {
+  width: 200px;
+  height: auto;
+}
+.loginBox {
+  padding: 30px 40px 30px 40px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.loginBox h1 {
+  font-weight: 600;
+}
+.loginTitle p {
+  font-weight: 300;
+  margin-bottom: 30px;
+}
+
+.formGroup div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 10px;
+}
+.forgotPswd {
+  font-weight: 400 !important;
+  font-size: 0.85rem;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+.forgotPswd:hover {
+  text-decoration: underline;
+}
+.formGroup div label {
+  font-weight: 300;
+}
+.formGroup input {
+  border: 1px solid #ccc;
+  width: 100%;
+  height: 48px;
+  padding: 0 16px;
+  border-radius: 5px;
+  outline: none;
+  font-weight: 400;
+  color: #63a161;
+  font-size: 0.875rem;
+  transition: border-color 0.3s;
+}
+
+.formGroup input:focus {
+  border-color: #63a161;
+}
+
+.loginBtn {
+  width: 100%;
+  background-color: #50aa4e;
+  border-radius: 5px;
+  border: none;
+  color: rgba(255, 255, 255, 1);
+  font-weight: 700;
+  padding: 10px 16px 10px 16px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: transform 0.3s;
+}
+.loginBtn:hover {
+  transform: scale(1.05);
+}
+.error {
+  font-weight: 400;
+  font-size: 0.85rem;
+  color: #ff4d4d;
+}
+
+.toggle {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.toggle input {
+  padding-right: 40px;
+}
+.toggle svg {
+  position: absolute;
+  right: 10px;
+  top: 12px;
+  cursor: pointer;
+}
