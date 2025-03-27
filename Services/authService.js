@@ -32,7 +32,7 @@ export const AuthProvider = ({ children }) => {
 
       console.log("Full Response Data:", response.data); // Log the entire response
 
-      const { token, refreshToken } = response.data;
+      const { token, refreshToken, isPasswordSet } = response.data;
       const StaffCode = response.data.staffCode;
       const Email = response.data.email;
       const role = response.data.role;
@@ -57,6 +57,7 @@ export const AuthProvider = ({ children }) => {
           PositionCode,
           DepartmentCode,
           BranchCode,
+          isPasswordSet,
           firstName: StaffPersonalInformation?.firstName,
           lastName: StaffPersonalInformation?.lastName,
           gender: StaffPersonalInformation?.gender,
@@ -81,6 +82,7 @@ export const AuthProvider = ({ children }) => {
         PositionCode,
         DepartmentCode,
         BranchCode,
+        isPasswordSet,
         firstName: StaffPersonalInformation?.firstName,
         lastName: StaffPersonalInformation?.lastName,
         gender: StaffPersonalInformation?.gender,
@@ -214,7 +216,8 @@ export const AuthProvider = ({ children }) => {
 
   const resetPassword = async (email) => {
     try {
-      await axios.post(`${API_URL}/ResetPassword`, { email });
+      const response = await axios.post(`${API_URL}/ResetPassword`, { email });
+      return response.data;
     } catch (error) {
       throw error.response?.data?.message || "Reset password failed";
     }

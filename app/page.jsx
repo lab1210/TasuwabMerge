@@ -5,16 +5,16 @@ import { LuEyeClosed } from "react-icons/lu";
 import { LuEye } from "react-icons/lu";
 import Link from "next/link";
 import { useAuth } from "@/Services/authService";
-import { useRouter } from "next/navigation"; // Import useRouter
+import { useRouter } from "next/navigation";
 
 export default function Login() {
   const { login } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
-  const [emailOrStaffCode, setEmailOrStaffCode] = useState(""); // Changed from StaffCode
+  const [emailOrStaffCode, setEmailOrStaffCode] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(""); // Corrected variable name (lowercase 'error')
+  const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const router = useRouter(); // Initialize router
+  const router = useRouter();
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -22,17 +22,21 @@ export default function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError(""); // Clear previous errors
+    setError("");
     setIsLoading(true);
 
     try {
-      await login(emailOrStaffCode, password); // Use emailOrStaffCode
+      await login(emailOrStaffCode, password);
+      // If login succeeds without the "Password not set" error,
+      // your existing successful login handling here
+      console.log(
+        "Login successful (password set), authService should handle redirection."
+      );
     } catch (err) {
-      // Handle specific error messages from the API
-      if (err && err.includes("Login failed")) {
-        setError(err); // Display the error from the API
+      if (err === "Password not set. Please reset your password.") {
+        router.push("/Authentication/Set-Password");
       } else {
-        setError("Login failed. Please check your credentials.");
+        setError(err || "Login failed");
       }
     } finally {
       setIsLoading(false);

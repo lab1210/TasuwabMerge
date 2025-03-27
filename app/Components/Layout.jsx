@@ -1,6 +1,5 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import AdminSidebar from "./AdminSidebar";
 import StaffSidebar from "./StaffSidebar";
 import styles from "./css/Layout.module.css";
 import Header from "./Header";

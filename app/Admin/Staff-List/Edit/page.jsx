@@ -1,59 +1,57 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import styles from "../../../Components/css/Modal.module.css";
-import staffService from "@/Services/staffService"; // Import the entire service
+import staffService from "@/Services/staffService";
 import branchService from "@/Services/branchService";
 import departmentService from "@/Services/departmentService";
 import positionService from "@/Services/positionService";
 import roleService from "@/Services/RoleService";
 
-const EditStaff = ({ staff = {}, onClose, onUpdate }) => {
+const EditStaff = ({ staffCode, onClose, onUpdate }) => {
+  console.log("EditStaff rendered with staffCode:", staffCode);
+  // Change prop to staffCode
   const [formData, setFormData] = useState({
-    staffCode: staff.staffCode || "",
-    firstName: staff.firstName || "",
-    lastName: staff.lastName || "",
-    gender: staff.gender || "",
-    martialStatus: staff.martialStatus || "",
-    dateOfBirth: staff.dateOfBirth || 0, // Initialize as number
-    address: staff.address || "",
-    email: { value: staff.email || "" }, // Nested email object
-    phone: staff.phone || "",
-    staffImage: staff.staffImage || "",
-    roleID: staff.roleID || "",
-    positionID: staff.positionID || "",
-    departmentID: staff.departmentID || "",
-    branchID: staff.branchID || "",
+    staffCode: "",
+    firstName: "",
+    lastName: "",
+    gender: "",
+    martialStatus: "",
+    dateOfBirth: "",
+    address: "",
+    email: { value: "" },
+    phone: "",
+    staffImage: "",
+    roleID: "",
+    positionID: "",
+    departmentID: "",
+    branchID: "",
   });
 
   const [message, setMessage] = useState("");
-  const [branches, setBranches] = useState([]);
+  const [branches, setBranches] = useState();
   const [error, setError] = useState("");
   const [loadingBranches, setLoadingBranches] = useState(true);
   const [branchError, setBranchError] = useState(null);
 
-  // Department state
-  const [departments, setDepartments] = useState([]);
+  const [departments, setDepartments] = useState();
   const [loadingDepartments, setLoadingDepartments] = useState(true);
   const [departmentError, setDepartmentError] = useState(null);
 
-  // Position state
-  const [positions, setPositions] = useState([]);
+  const [positions, setPositions] = useState();
   const [loadingPositions, setLoadingPositions] = useState(true);
   const [positionError, setPositionError] = useState(null);
 
-  // Role state
-  const [roles, setRoles] = useState([]);
+  const [roles, setRoles] = useState();
   const [loadingRoles, setLoadingRoles] = useState(true);
   const [roleError, setRoleError] = useState(null);
+
+  const [loadingStaff, setLoadingStaff] = useState(true); // New loading state for staff
 
   useEffect(() => {
     async function fetchBranches() {
       try {
         setLoadingBranches(true);
         const response = await branchService.getAllBranches();
-
-        console.log("Branches API response:", response);
-
         if (response?.data && Array.isArray(response.data)) {
           setBranches(response.data);
         } else if (response && Array.isArray(response)) {
@@ -61,12 +59,12 @@ const EditStaff = ({ staff = {}, onClose, onUpdate }) => {
         } else {
           console.error("Unexpected response format for branches:", response);
           setBranchError("Failed to load branches.");
-          setBranches([]);
+          setBranches();
         }
       } catch (error) {
         console.error("Error fetching branches:", error);
         setBranchError("Error fetching branches.");
-        setBranches([]);
+        setBranches();
       } finally {
         setLoadingBranches(false);
       }
@@ -86,12 +84,12 @@ const EditStaff = ({ staff = {}, onClose, onUpdate }) => {
             response
           );
           setDepartmentError("Failed to load departments.");
-          setDepartments([]);
+          setDepartments();
         }
       } catch (error) {
         console.error("Error fetching departments:", error);
         setDepartmentError("Error fetching departments.");
-        setDepartments([]);
+        setDepartments();
       } finally {
         setLoadingDepartments(false);
       }
@@ -108,12 +106,12 @@ const EditStaff = ({ staff = {}, onClose, onUpdate }) => {
         } else {
           console.error("Unexpected response format for positions:", response);
           setPositionError("Failed to load positions.");
-          setPositions([]);
+          setPositions();
         }
       } catch (error) {
         console.error("Error fetching positions:", error);
         setPositionError("Error fetching positions.");
-        setPositions([]);
+        setPositions();
       } finally {
         setLoadingPositions(false);
       }
@@ -130,12 +128,12 @@ const EditStaff = ({ staff = {}, onClose, onUpdate }) => {
         } else {
           console.error("Unexpected response format for roles:", response);
           setRoleError("Failed to load roles.");
-          setRoles([]);
+          setRoles();
         }
       } catch (error) {
         console.error("Error fetching roles:", error);
         setRoleError("Error fetching roles.");
-        setRoles([]);
+        setRoles();
       } finally {
         setLoadingRoles(false);
       }
@@ -148,30 +146,60 @@ const EditStaff = ({ staff = {}, onClose, onUpdate }) => {
   }, []);
 
   useEffect(() => {
-    if (staff) {
-      setFormData({
-        staffCode: staff.staffCode || "",
-        firstName: staff.firstName || "",
-        lastName: staff.lastName || "",
-        gender: staff.gender || "",
-        martialStatus: staff.martialStatus || "",
-        dateOfBirth: staff.dateOfBirth || 0, // Ensure it's a number
-        address: staff.address || "",
-        email: { value: staff.email || "" }, // Set nested email
-        phone: staff.phone || "",
-        staffImage: staff.staffImage || "",
-        roleID: staff.roleID || "",
-        positionID: staff.positionID || "",
-        departmentID: staff.departmentID || "",
-        branchID: staff.branchID || "",
-      });
-    }
-  }, [staff]);
+    console.log(
+      "fetchStaffDetails useEffect triggered with staffCode:",
+      staffCode
+    );
+    const fetchStaffDetails = async () => {
+      if (staffCode) {
+        setLoadingStaff(true);
+        try {
+          const response = await staffService.getStaff(staffCode);
+          if (response.success && response.staff) {
+            const staffData = response.staff;
+            const userData = response.user; // Extract user data
+
+            const dobInteger = staffData.dateOfBirth;
+            const yyyy = String(dobInteger).slice(0, 4);
+            const mm = String(dobInteger).slice(4, 6);
+            const dd = String(dobInteger).slice(6, 8);
+            const formattedDOBForInput = `${yyyy}-${mm}-${dd}`;
+
+            setFormData({
+              staffCode: staffData.staffCode || "",
+              firstName: staffData.firstName || "",
+              lastName: staffData.lastName || "",
+              gender: staffData.gender || "",
+              martialStatus: staffData.martialStatus || "",
+              dateOfBirth: formattedDOBForInput || "", // Set formatted DOB for date input
+              address: staffData.address || "",
+              email: { value: staffData.email || "" },
+              phone: staffData.phone || "",
+              staffImage: staffData.staffImage || "",
+              roleID: userData.roleCode || "", // Use roleCode from user
+              positionID: userData.positionCode || "", // Use positionCode from user
+              departmentID: userData.departmentCode || "", // Use departmentCode from user
+              branchID: userData.branchCode || "", // Use branchCode from user
+            });
+          } else {
+            setError(response.message || "Failed to fetch staff details.");
+          }
+        } catch (error) {
+          console.error("Error fetching staff details:", error);
+          setError("Error fetching staff details.");
+        } finally {
+          setLoadingStaff(false);
+        }
+      }
+    };
+
+    fetchStaffDetails();
+  }, [staffCode]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     if (name === "email") {
-      setFormData({ ...formData, email: { value } });
+      setFormData({ ...formData, [name]: { value } });
     } else {
       setFormData({ ...formData, [name]: value });
     }
@@ -179,20 +207,27 @@ const EditStaff = ({ staff = {}, onClose, onUpdate }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log("handleSubmit triggered");
     setMessage("");
     setError("");
 
+    const formattedDOBForBackend = formData.dateOfBirth.replace(/-/g, "");
+
+    const updatedFormData = {
+      ...formData,
+      dateOfBirth: formattedDOBForBackend,
+    };
     try {
-      const response = await staffService.editStaff(formData); // Use editStaff
-      if (response.status === 200) {
+      const response = await staffService.editStaff(updatedFormData);
+      if (response.success) {
         setMessage("Staff updated successfully!");
-        onUpdate(); // Refresh staff list in parent component
+        onUpdate();
         setTimeout(() => {
           setMessage("");
           onClose();
         }, 2000);
       } else {
-        setError(response.data?.message || "Failed to update staff.");
+        setError(response.message || "Failed to update staff.");
       }
     } catch (err) {
       setError("Failed to update staff. Please try again.");
@@ -200,11 +235,15 @@ const EditStaff = ({ staff = {}, onClose, onUpdate }) => {
     }
   };
 
+  if (loadingStaff) {
+    return <div>Loading...</div>; // Or a more appropriate loading indicator
+  }
+
   return (
-    <>
+    <div>
       {message && <p className={styles.successMessage}>{message}</p>}
       {error && <p className={styles.error}>{error}</p>}
-      <form className={styles.form} onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <div className={styles.formgrp}>
           <div>
             <label>Staff Code:</label>
@@ -213,7 +252,7 @@ const EditStaff = ({ staff = {}, onClose, onUpdate }) => {
               name="staffCode"
               value={formData.staffCode}
               className={styles.input}
-              readOnly // Staff Code should likely not be editable
+              readOnly
             />
           </div>
           <div>
@@ -245,7 +284,7 @@ const EditStaff = ({ staff = {}, onClose, onUpdate }) => {
             <input
               type="email"
               name="email"
-              value={formData.email.value} // Access nested value
+              value={formData.email.value}
               onChange={handleChange}
               className={styles.input}
               placeholder="Enter Staff E-mail"
@@ -283,7 +322,7 @@ const EditStaff = ({ staff = {}, onClose, onUpdate }) => {
                 branches.map((branch) => (
                   <option
                     key={branch.branch_id || branch.branch_code}
-                    value={branch.branch_id} // Use branch.id as value
+                    value={branch.branch_id}
                   >
                     {branch.name}
                   </option>
@@ -333,7 +372,7 @@ const EditStaff = ({ staff = {}, onClose, onUpdate }) => {
           <div>
             <label>Date of Birth:</label>
             <input
-              type="text"
+              type="date"
               name="dateOfBirth"
               value={formData.dateOfBirth}
               onChange={handleChange}
@@ -385,7 +424,7 @@ const EditStaff = ({ staff = {}, onClose, onUpdate }) => {
                 <option disabled>{departmentError}</option>
               ) : (
                 departments.map((dept) => (
-                  <option key={dept.id} value={dept.id}>
+                  <option key={dept.department_id} value={dept.department_id}>
                     {dept.name}
                   </option>
                 ))
@@ -408,7 +447,7 @@ const EditStaff = ({ staff = {}, onClose, onUpdate }) => {
                 <option disabled>{positionError}</option>
               ) : (
                 positions.map((pos) => (
-                  <option key={pos.id} value={pos.id}>
+                  <option key={pos.position_id} value={pos.position_id}>
                     {pos.name}
                   </option>
                 ))
@@ -427,13 +466,13 @@ const EditStaff = ({ staff = {}, onClose, onUpdate }) => {
             />
           </div>
         </div>
-        <div className={styles.submit}>
-          <button type="submit" className={styles.button}>
-            Save Changes
-          </button>
-        </div>
+        {/* <div className={styles.submit}> */}
+        <button type="submit" className={styles.button}>
+          Save Changes
+        </button>
+        {/* </div> */}
       </form>
-    </>
+    </div>
   );
 };
 

@@ -154,27 +154,29 @@ const AddStaff = ({ onClose, onSuccess }) => {
     setLoading(true);
     setError(null);
 
+    const formattedDOB = formData.dateOfBirth.replace(/-/g, ""); // Remove hyphens
+
     const staffDataToSend = {
       firstName: formData.firstName,
       lastName: formData.lastName,
       gender: formData.gender,
       martialStatus: formData.martialStatus,
-      dateOfBirth: formData.dateOfBirth,
+      dateOfBirth: formattedDOB, // Send the formatted DOB
       address: formData.address,
       email: { value: formData.email },
       phone: formData.phone,
-      staffImage: formData.staffImage, // Directly the URL string
+      staffImage: formData.staffImage,
       roleID: formData.roleID,
       positionID: formData.positionID,
       departmentID: formData.departmentID,
       branchID: formData.branchID,
     };
 
+    console.log("Form Data being sent:", staffDataToSend); // Log to verify the format
+
     try {
       const response = await staffService.createStaff(staffDataToSend);
       console.log("Create Staff Response:", response);
-      console.log("Form Data being sent:", staffDataToSend);
-
       onSuccess();
       onClose();
     } catch (err) {
@@ -248,7 +250,7 @@ const AddStaff = ({ onClose, onSuccess }) => {
           <div>
             <label>Date of Birth</label>
             <input
-              type="text"
+              type="date"
               name="dateOfBirth"
               value={formData.dateOfBirth}
               onChange={handleChange}
@@ -339,7 +341,7 @@ const AddStaff = ({ onClose, onSuccess }) => {
                 <option disabled>{departmentError}</option>
               ) : (
                 departments.map((dept) => (
-                  <option key={dept.id} value={dept.id}>
+                  <option key={dept.department_id} value={dept.department_id}>
                     {dept.name}
                   </option>
                 ))
@@ -362,7 +364,7 @@ const AddStaff = ({ onClose, onSuccess }) => {
                 <option disabled>{positionError}</option>
               ) : (
                 positions.map((pos) => (
-                  <option key={pos.id} value={pos.id}>
+                  <option key={pos.position_id} value={pos.position_id}>
                     {pos.name}
                   </option>
                 ))

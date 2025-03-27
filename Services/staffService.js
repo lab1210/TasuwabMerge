@@ -1,4 +1,3 @@
-// staffservice.js
 import axios from "axios";
 
 const API_BASE_URL = `${process.env.NEXT_PUBLIC_API_URL}`;
@@ -79,6 +78,18 @@ const staffService = {
     } catch (error) {
       console.error("Error editing staff:", error);
       throw error.response?.data || error.message || "Failed to edit staff";
+    }
+  },
+
+  getStaff: async (staffCode) => {
+    try {
+      const response = await axios.get(
+        `${API_BASE_URL}/Staff/get-staff/${staffCode}`
+      );
+      return response.data;
+    } catch (error) {
+      console.error(`Error fetching staff with code ${staffCode}:`, error);
+      throw error.response?.data || error.message || "Failed to fetch staff";
     }
   },
 
